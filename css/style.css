@@ -1,0 +1,796 @@
+
+
+*{
+	padding:0;
+	margin:0;
+	border:0;
+}
+*,*:before,*:after{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+:fokus,:active{outline:none;}
+a:focus,a:active{outline:none;}
+
+nav,footer,header,aside{display:block;}
+html,body{
+	height:100%;
+	width:100%;
+	font-size:100%;
+	line-height:1;
+	font-size:14px;
+	-ms-text-size-adjust:100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display:none;}
+button{cursor:pointer;}
+button::-moz-fokus-inner{padding:0;border:0;}
+a,a:visited{text-decoration:none;}
+a:hover{text-decoration:none;}
+ul li{list-style:none;}
+img{vertical-align:top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:400}
+/*стили для демонстрации*/
+*,*:before,*:after{
+	padding:0;
+	margin:0;
+	border:0;
+	box-sizing:border-box;
+}
+font-family: 'Bebas Neue', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Lato', sans-serif;
+
+html,body{
+	height: 100%;
+}
+body{
+
+}
+.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.content{
+	flex: 1 1 auto;
+}
+
+/*основные стили*/
+.container {/*ограничеваем наш контэйнер(текст,лого,меню) по ширине*/
+	max-width: 1296px;
+	margin: 0px auto;
+	padding: 0px 10px;
+}
+
+.header {
+	position: fixed;/*фиксация плашки на верху*/
+	width:100%;
+	top: 0 ;
+	left: 0;
+	z-index: 50;
+}
+.header:before{/*оформление плашки на которой находятся логтип,меню,бургер*/
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #499fea;
+	z-index: 2;
+}
+
+.header_body {/*логтип,меню,бургер*/
+	position: relative;
+	display: flex;/*буквы поднимаются и заезжают на логотип*/
+	justify-content: space-between;/*слова(меню) и логотип разбрасуются в разные стороны*/
+	height: 100px;/*плашка уменьшается до 80px*/
+	align-items: center;/*выстраеваем контент по горизонтале*/
+}
+.header_logo {/*оформление логотипа*/
+	font-family: 'Open Sans';
+	font-size: 30px;
+	line-height: 24px;
+	font-weight: 700;
+	color: #ecf0f1;
+	outline: hidden;
+	position: relative;
+	z-index: 3;
+}
+.header_logo span{
+	color:#f4b8c5 ;
+}
+
+
+.header_logo img{
+	max-width: 30px;
+	display: block;/*картинка будет без подрезания*/
+}
+
+.header_burger {/*скрываем бургер для размеров выше 767px*/
+   display: none;
+}
+
+.header_list {
+	display: flex;/*колонка с меню превращается в строку и она помещается на плашке*/
+	position: relative;
+	z-index: 2;
+}
+.header_list li{/*отступ между словами в меню*/
+	list-style: none;
+	margin: 0 0 0 20px;
+}
+.header_link {/*оформление меню(слов)*/
+	font-family: 'Open Sans';
+	font-size: 20px;
+	line-height: 48px;
+	font-weight: 400;
+	color: #ffffff;
+}
+
+.content {/*отступ текста от шапки сайта*/
+	padding: 100px 0 0 0;
+}
+
+@media (max-width: 767px){/*медиа запрос для всего что меньше 767px*/
+body.lock{/*блокируется скрол под выехавшем меню*/
+    	overflow: hidden;
+}
+.header_body{/*высота(фиолетовой) шапки уменьшаем до 50px*/
+    	height: 50px;
+}
+.header_logo{
+      font-size: 10px;
+      line-height: 10px;
+
+    }
+
+.header_logo img{/*уменьшаем лого до 20px*/
+  		max-width: 20px;
+		display: block;/*картинка будет без подрезания*/
+}
+.header_burger{
+		display: block;
+		position: relative;
+		width: 30px;/*размеры меню бургер*/
+		height: 20px;/*размеры меню бургер*/
+		position: relative;
+		z-index: 3;
+}
+
+.header_burger span{/*рисуем меню бургер, средняя полоса бургера*/
+		position: absolute;
+		background-color: #fff;
+		width: 100%;
+		height: 2px;
+		left: 0;
+		top: 9px;/*поднимаем на 9px нашу полоску*/
+		transition: all 0.3s ease 0s;/*добавляет анимацию-бургер медленно превращается в крестик*/
+}
+
+.header_burger:before,
+.header_burger:after{/*рисуем меню бургер*/
+		content: '';
+		background-color: #fff;
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		left: 0;
+		transition: all 0.3s ease 0s;/*добавляет анимацию-бургер медленно превращается в крестик*/
+}
+
+.header_burger:before{/*верхняя полоса бургера*/
+	top: 0;
+}
+.header_burger:after{/*нижняя полоса бургера*/
+   bottom: 0;
+}
+
+.header_menu {/*оформление меню при размере меньше 767px*/
+	position: fixed;
+	top: -100%;/*меню прячется за плашку,пока не нажмешь на бургер*/
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;/*включает скрол, при горизонтальном положении можно будет добраться до всех пунктов меню */
+	transition: all 0.3s ease 0s;/*анимация меню(будет выезжать шторка с меню из плашки фиолет.)*/
+	background-color: #ffffff;
+	padding: 70px 10px 20px 10px;/*отступы меню*/
+    margin: 0 0px 0 0px;
+}
+
+.header_menu.active{
+	top: 0;/*меню появляется при нажатии на бургер*/
+}
+    /*при нажатии на бургер появляется крестик*/
+.header_burger.active span{
+       transform: scale(0);/*убираем среднюю палочку*/
+    }
+.header_burger.active:before{/*делаем из бургера крестик*/
+		transform: rotate(45deg);
+		top: 9px;/*регулируем по высоте палочки, чтобы вышел крестик*/
+	}
+.header_burger.active:after{/*делаем из бургера крестик*/
+		transform: rotate(-45deg);
+		bottom: 9px;/*регулируем по высоте палочки, чтобы вышел крестик*/
+  }
+
+.header_list {/*меняем flex на block  строка с меню превращается в колонку*/
+  	display: block;
+}
+.header_list li{
+	margin: 0 0 20px 0;/*отступы между словами меню*/
+}
+.header_link{
+	font-size: 24px;/*увеличиваем шрифт меню*/
+	color:#499fea ;
+
+}
+
+.content {
+	padding: 100px 0 0 0;
+}
+.content_text {/*содержимое страницы текста*/
+	font-size: 18px;
+	line-height: 25px;
+}
+.content_text p{/*отступы между параграфами текста*/
+	margin: 0 0 20px 0;
+}
+}
+@media(max-width:767px){
+.content{
+		padding: 40px 0 0 0;/*возвращаем не место уменьшенной щапки контент*/
+}
+}
+
+
+
+/*---------------------------------------------------------------------------*/
+.expert {
+	background: url('../img/vector_smart_object_2528.png') no-repeat,
+	            url('../img/shape_15_copy_11_2773.png')0 0/cover no-repeat;
+	padding: 0 0 200px 0;
+}
+
+.container {}
+.expert_row {
+	display: flex;
+}
+.expert_info {
+	max-width: 700px;
+	margin-top: 42px;
+}
+.expert_title {
+	font-family: Poppins;
+	font-size: 50px;
+	line-height: 60px;
+	font-weight: 400;
+	color: #ffffff;
+	margin-bottom: 50px;
+}
+.expert_text {
+	font-family: 'Inter UI';
+	font-size: 18px;
+	line-height: 36px;
+	font-weight: 500;
+	color: #ffffff;
+	margin-bottom: 56px;
+}
+.expert_button {
+	margin-bottom: 382px;
+}
+
+.expert_btn {
+	font-family: 'Inter UI';
+	font-size: 20px;
+	font-weight: 700;
+	color: #37474f;
+
+	background-color: #ffffff;
+   box-shadow: 0px 30px 35px 0px rgba(31,110,227,0.15);
+   padding: 20px 35px;
+   border-radius: 15px;
+}
+
+/*--------------------------------------------------------------------------------*/
+.why {
+	background: url('../img/shape_15_copy_5_2711.jpg')0 0/cover no-repeat;
+	padding: 50px 0 1200px 0;
+}
+
+.why_body{
+}
+.why_column_item{
+	padding: 40px;
+	height: 100%;
+}
+
+.why_title {
+	text-align: center;
+	font-family: Poppins;
+	font-size: 36px;
+	line-height: 50px;
+	font-weight: 400;
+	color: #263238;
+	margin-bottom: 130px;
+}
+.why_columns {
+	display: flex;
+   align-items: center;
+}
+.why_column_left {
+	margin-right: 50px;
+}
+.why_column {
+	background-color: #ffffff;
+	box-shadow: 0px 27px 20px 0px rgba(207,216,220,0.15);
+	margin: 50px 0px;
+}
+.why_img_man{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.why_img_cubok {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.why_img_carta{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.why_img_hat{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.numer{
+	opacity: 0.2;
+font-family: 'Inter UI';
+font-size: 200px;
+line-height: 36px;
+font-weight: 900;
+color: #cfd8dc;
+margin-left: 50px;
+}
+
+.why_column_title {
+	font-family: 'Inter UI';
+	font-size: 24px;
+	line-height: 35px;
+	font-weight: 700;
+	color: #263238;
+	margin: 70px 0 60px 0;
+}
+	
+
+.why_column_text {
+	font-family: 'Inter UI';
+	line-height: 35px;
+	font-size: 18px;
+	font-weight: 500;
+	color: #546e7a;
+}
+.why_column_right {}
+.why_button {
+	margin-top: 110px;
+}
+.why_btn {
+	font-family: 'Inter UI';
+	font-size: 20px;
+	line-height: 40px;
+	font-weight: 700;
+	color: #ffffff;
+	padding: 20px 35px;
+   border-radius: 15px;
+	background-color: #2fc9ef;
+	box-shadow: 0px 30px 35px 0px rgba(47,201,239,0.15);
+}
+@media(max-width: 1000px){
+.why_columns {
+	flex-direction: column;
+	align-items: center;
+}
+.why_column_item{
+	text-align: center;
+}
+}
+@media(max-width: 480px){
+.why_column_item{
+	max-width: 350px;
+}
+}
+/*------------------------------------------------------------*/
+.clients {
+	padding: 0px 0 70px 0;
+	margin-top: -190px;
+}
+.clients_title{
+	font-family: Poppins;
+	font-size: 36px;
+	line-height: 50px;
+	font-weight: 400;
+	color: #263238;
+	text-align: center;
+	margin-bottom: 70px;
+}
+.clients_foto {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	flex: 0 1 100%;
+}
+.clients_item {
+	flex: 0 1 25%;
+	margin-bottom: 40px;
+	max-width: 300px;
+	justify-content: center;
+}
+.clients_item:last-child{
+	margin-right: 0px;
+}
+/*-------------------------------------slick-slider----------------------------------*/
+.main_{
+}
+/*Слайдер*/
+.slick-slider{}
+/*Ограничивающая оболочка*//*если слайдер явл. флекс элементом нужно указать min width=0;*/
+.slick-list{
+	overflow: hidden;
+}
+/*Лента слайдов*/
+.slick-track{
+	display: flex;
+	align-items: flex-start;/*слайдер автом. подстраивается по высоте под слайды разн выс.*/
+}
+
+
+/*конкретный слайдер*/
+.slider-smole {
+	position: relative;
+	padding: 0 60px;/*отступ стрелок от слайда*/
+}
+/*нужен для вертикального слайда,если горизонтальный не пишем его*/
+/*.slider .slick-track{
+	display: block;
+}*/
+
+.slider-smole .slick-arrow {
+	position: absolute;
+	top: 50%;
+	z-index: 10;
+	margin: -30px 0 0 0;/*поднимаем стрел по вертикале и ставим по центру слайда*/
+	font-size: ;/*ставим значение 0 и пропадают кноп перекл,чтобы поставить свои стрелки*/
+	width: 30px;/*такого размера будут стрелки*/
+	height: 60px;
+}
+.slider-smole .slick-arrow.slick-prev{
+	left: 0;/*ставим стрелку слева*/
+	background: url()0 0/100% no-repeat;/*добавляем img и ставим свою стрелку*/
+}
+.slider-smole .slick-arrow.slick-next{/*ставим стрелку справа*/
+	right: 0;/*ставим стрелку справа*/
+	background: url()0 0/100% no-repeat;/*добавляем img и ставим свою стрелку*/
+}
+.slider-smole .slick-arrow.slick-disadled{
+	opacity: 0.2;/*стрелка стан. прозрачная,когда последний слайд */
+}
+/*точки*/
+.slider-smole .slick-dots{
+	display: flex;
+	align-items: center;
+	justify-content: center;/*ставим поцентру точки*/
+}
+.slider-smole .slick-dots li{
+	list-style: none;
+	margin: 0 10px;/*делаем отступы между точками*/
+}
+.slider-smole .slick-dots button{
+	font-size: 0;/*убираем надписи(цифры) вместо них будут точки*/
+	width: 10px;/*делаем дальше точки*/
+	height: 10px;
+	background-color: black;
+	border-radius: 50%;
+}
+
+.slider-smole .slick-dots li.slick-active button{/*стиль для активной точки*/
+	background: transparent;/*делаем активную точку прозрачной*/
+	border: solid 1px black;/*контур точки черный*/
+}
+
+
+/*эфект- слайды по сторонам затемнены, а по центру видно хорошо*/
+.slider_item{
+	/*transition: all 0.3s ease 0s;
+	text-align: center;/*ставим слайд по центру*/
+	/*opacity: 0.4;/*делаем наши слайды прозрачными*/
+}
+.slider_item.slick-center{
+	/*opacity: 1;/*главный слайд,центральный-делаем не прозрачным*/
+}
+
+
+
+/*-------------------------------------------------------------------*/
+.form {
+	margin-bottom: -450px;
+	z-index: 50;
+}
+.form_total{
+	position:relative;
+	display: flex;
+}
+.form_left {
+	justify-content: center;
+}
+.form_left_img {
+	position: absolute;/*корегировать*/
+	z-index: 3;
+}
+.form_left_img img{
+	width: 100%;
+}
+.form_left_img img{
+}
+.form_left_body{
+	position: absolute;
+	padding: 58px 0 88px 88px;
+	z-index: 4;
+}
+.form_title {
+	font-family: Poppins;
+	font-size: 36.1px;
+	font-weight: 400;
+	color: #ffffff;
+	margin-bottom: 40px;
+}
+.form_subtitle {
+	font-family: 'Inter UI';
+	font-size: 16px;
+	font-weight: 500;
+	color: #b2c9f3;
+	margin-bottom: 55px;
+}
+.form_row {
+	display: flex;
+	margin-bottom: 30px;
+}
+.form_column {
+	padding-right: 40px;
+}
+.form_name {
+	margin-bottom: 40px;
+}
+.form_name textarea{
+	height: 30px;
+}
+
+.form_name p{
+	font-family: 'Inter UI';
+	font-size: 16.1px;
+	line-height: 40px;
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	color: #ffffff;
+}
+.form_address {}
+.form_address p{
+	font-family: 'Inter UI';
+	font-size: 16.1px;
+	line-height: 40px;
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	color: #ffffff;
+}
+.form_message {}
+.form_message p{
+	font-family: 'Inter UI';
+	font-size: 16.1px;
+	line-height: 40px;
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	color: #ffffff;
+}
+.form_button {}
+.form_btn {
+	font-family: 'Inter UI';
+	font-size: 20px;
+	line-height: 40px;
+	font-weight: 700;
+	color: #ffffff;
+	padding: 20px 35px;
+	border-radius: 15px;
+	background-color: #2fc9ef;
+	box-shadow: 0px 30px 35px 0px rgba(31,110,227,0.15);
+	border-radius: 15px;
+}
+.form_right {
+	justify-content: center;
+	padding: 50px 0 0 700px;
+}
+.form_right_img {   
+	position: absolute;
+	z-index: 5;
+}
+.form_right_body{
+	position: relative;
+	padding: 195px 200px 56px 50px;
+	z-index: 6;
+}
+
+.form_right_elips{
+	position: relative;
+	top: -490px;
+   left: 225px;
+}
+.form_right_qwadr{
+   position: relative;
+	top: -708px;
+   left: 446px;
+}
+.form_right_gps{
+	position: relative;
+	top: -815px;
+   left: 483px;
+}
+.form_right_title {
+	font-family: 'Inter UI';
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 700;
+	color: #ffffff;
+
+	font-size: 16px;
+	margin-bottom: 25px;
+}
+.form_right_address {
+	font-family: 'Inter UI';
+	line-height: 24px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #ffffff;
+	margin-bottom: 25px ;
+}
+.forn_right_tel {
+	font-family: 'Inter UI';
+	line-height: 24px;
+	font-size: 16px;
+   font-weight: 500;
+   color: #ffffff;
+}
+@media(max-width: 1270px){
+.form_right {
+	padding: 50px 0 0 500px;
+}
+}
+@media(max-width: 1050px){
+.form_right {
+	padding: 350px 0 0 260px;
+}
+}
+@media(max-width: 900px){
+.form_left_body{
+	padding-top: 20px;
+}
+.form_title {
+	margin-bottom: 10px;
+}
+.form_subtitle {
+	margin-bottom: 15px;
+}
+.form_row {
+	margin-bottom: 18px;
+}
+.form_column {
+	padding-right: 40px;
+}
+.form_name {
+	margin-bottom: 15px;
+}
+}
+@media(max-width: 790px){
+.form_right {
+	padding: 390px 0 0 10px;
+}
+}	
+@media(max-width: 650px){
+.form_button{
+	margin-bottom: 100px;
+}
+.form_name{
+	display: none;
+}
+.form_left_body{
+	padding: 18px 0 88px 38px;
+}
+}
+/*----------------------------------------------------------------------*/
+.footer {
+	background: url('../img/shape_15_copy_2_2689.png')0 0/cover no-repeat;
+}
+.footer_info {
+	display: flex;
+	padding: 60px 0 110px 0;
+}
+.footer_daun{
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid white;
+	padding-top: 30px;
+}
+.footer_body{
+	padding-top: 700px;
+}
+.footer_col {
+	max-width: 350px;
+	margin-right: 150px;
+}
+.footer_text {
+	font-family: 'Inter UI';
+font-size: 16px;
+line-height: 28px;
+font-weight: 400;
+color: #ffffff;
+}
+.footer_columns {
+	display: flex;
+	flex: 0 1 100%;
+	justify-content: space-between;
+}
+.footer_column {
+	flex: 0 1 25%;
+	margin-right: 40px;
+}
+.footer_column:last-child{
+	margin: 0;
+}
+.footer_title {
+	font-family: 'Inter UI';
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #ffffff;
+}
+.footer_column_text{
+	font-family: 'Inter UI';
+	line-height: 40px;
+	letter-spacing: 0.1em;
+	color: #ffffff;
+   font-size: 16px;
+	font-weight: 500;
+	text-transform: none;
+	letter-spacing: normal;
+}
+.footer_copyright {}
+.footer_socials {
+	display: flex;
+}
+.footer_social {
+	position: relative;
+}
+
+.footer_logo{
+	position: absolute;
+	top: 13px;
+   left: 13px;
+}
+@media(max-width: 827px){
+.footer_col{
+	display: none;
+}
+}
+@media(max-width: 527px){
+.footer_column:nth-child(2){
+	display: none;
+}	
+}
